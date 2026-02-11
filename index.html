@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            font-family: sans-serif; 
+            background-color: #ffe6e6; 
+        }
+        .buttons { margin-top: 20px; }
+        .yes-button { 
+            background-color: #4CAF50; 
+            color: white; 
+            border: none; 
+            padding: 15px 32px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            border-radius: 8px; 
+            transition: 0.3s; 
+        }
+        .no-button { 
+            background-color: #f44336; 
+            color: white; 
+            border: none; 
+            padding: 15px 32px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            border-radius: 8px; 
+            margin-left: 10px; 
+        }
+        .teddy {
+            margin-top: 20px;
+            display: none; /* hidden by default */
+        }
+    </style>
+</head>
+<body>
+    <h1>Will you be my Valentine? 💖</h1>
+    <div class="buttons">
+        <button class="yes-button" onclick="handleYesClick()">Yes</button>
+        <button class="no-button" onclick="handleNoClick()">No</button>
+    </div>
+
+    <!-- Teddy GIF (hidden initially) -->
+    <img src="clip valentine.gif" alt="clip valentine.gif" class="teddy" width="250">
+
+    <script>
+        const messages = [
+            "Are you sure?",
+            "Really sure??",
+            "Are you positive?",
+            "Pleeaseee...",
+            "Just think about it!",
+            "If you say no, I will be really sad...",
+            "I will be very very very sad...",
+            "Ok fine, I will stop asking...",
+            "Just kidding, say yes please! ❤️"
+        ];
+
+        let messageIndex = 0;
+
+        function handleNoClick() {
+            const noButton = document.querySelector('.no-button');
+            const yesButton = document.querySelector('.yes-button');
+            
+            noButton.textContent = messages[messageIndex];
+            messageIndex = (messageIndex + 1) % messages.length;
+            
+            const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+            yesButton.style.fontSize = `${currentSize * 1.5}px`;
+        }
+
+        function handleYesClick() {
+            // Show the teddy GIF instead of redirecting
+            document.querySelector('.teddy').style.display = 'block';
+
+            // Optionally hide the buttons and question
+            document.querySelector('h1').style.display = 'none';
+            document.querySelector('.buttons').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
